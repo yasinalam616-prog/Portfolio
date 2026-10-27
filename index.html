@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Yasin Alam · AI Video Specialist</title>
+<meta name="description" content="Yasin Alam is an AI video specialist, scriptwriter and thumbnail designer based in Dhaka, Bangladesh.">
+<meta property="og:title" content="Yasin Alam · AI Video Specialist">
+<meta property="og:description" content="AI-generated brand films, shorts, scripts and thumbnail design.">
+<meta property="og:image" content="img/battery-inside.jpg">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a screening programme. Marquee name, then each film presented as a poster with its credit block. Single dark "theatre" look by choice. */
+:root {
+  --bg: #121214;
+  --surface: #1b1b1f;
+  --line: #2c2b30;
+  --fg: #ece8e1;
+  --muted: #a39d94;
+  --accent: #e8a24a;       /* projector-lamp amber */
+  --placeholder: #f0c27a;
+  --display: "Big Shoulders Display", "Oswald", "Arial Narrow", Impact, sans-serif;
+  --body: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+.draft-bar {
+  background: var(--accent);
+  color: #1a1206;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .02em;
+}
+.draft-bar .wrap { padding-block: 8px; }
+
+nav .wrap {
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  padding-block: 22px;
+  font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
+}
+nav .links { display: flex; gap: 22px; flex-wrap: wrap; }
+nav a { text-decoration: none; }
+nav a:hover { color: var(--fg); }
+
+.ph { color: var(--placeholder); border-bottom: 1px dashed var(--placeholder); }
+
+/* Hero */
+.hero .wrap { padding-block: 48px 72px; }
+.hero .kicker { font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+.hero h1 {
+  font-family: var(--display); font-weight: 800; text-transform: uppercase;
+  font-size: clamp(64px, 14vw, 168px); line-height: .86; letter-spacing: -.01em;
+  margin: 18px 0 28px; text-wrap: balance;
+}
+.hero h1 .ph { border-bottom-width: 3px; }
+.roles { display: flex; flex-wrap: wrap; gap: 10px 28px; font-family: var(--display); font-weight: 600; font-size: clamp(22px, 3vw, 30px); text-transform: uppercase; letter-spacing: .02em; }
+.roles span::before { content: "●"; color: var(--accent); font-size: .45em; vertical-align: middle; margin-right: 10px; }
+.hero p.bio { max-width: 60ch; color: var(--muted); font-size: 18px; margin: 28px 0 0; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 48px; align-items: end; }
+.hero-text { min-width: 0; }
+.portrait { margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.portrait img { display: block; width: 100%; max-width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 4px; }
+.portrait figcaption { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+@media (max-width: 760px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+  .portrait { max-width: 360px; }
+}
+
+/* Section heads */
+section.block .wrap { padding-block: 56px; border-top: 1px solid var(--line); }
+.head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 32px; }
+.head h2 { font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: clamp(36px, 5vw, 56px); line-height: 1; margin: 0; letter-spacing: .01em; }
+.head p { margin: 0; color: var(--muted); max-width: 46ch; }
+
+/* Film cards */
+.films { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
+.shorts { display: grid; grid-template-columns: repeat(2, minmax(0, 300px)) minmax(0, 1fr); gap: 32px; align-items: start; }
+.film { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.poster {
+  position: relative; display: block; overflow: hidden; border-radius: 4px;
+  text-decoration: none; max-width: 100%;
+  isolation: isolate;
+}
+.poster.w { aspect-ratio: 16 / 9; }
+.poster.t { aspect-ratio: 9 / 16; }
+.poster .art { position: absolute; inset: 0; z-index: -1; transition: transform .6s ease; }
+.poster:hover .art { transform: scale(1.04); }
+.poster .ptitle {
+  position: absolute; left: 20px; right: 20px; bottom: 18px;
+  font-family: var(--display); font-weight: 800; text-transform: uppercase; line-height: .92;
+  font-size: clamp(28px, 3.4vw, 42px); color: #fff; text-shadow: 0 2px 18px rgba(0,0,0,.45);
+}
+.poster.t .ptitle { font-size: clamp(30px, 4vw, 40px); }
+.poster .fmt {
+  position: absolute; top: 14px; left: 14px;
+  font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+  background: rgba(0,0,0,.55); color: #fff; padding: 4px 8px; border-radius: 2px;
+}
+.poster.playing { background: #000; }
+.poster .player { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.poster .play {
+  position: absolute; top: 14px; right: 14px; width: 40px; height: 40px; border-radius: 50%;
+  background: rgba(255,255,255,.92); display: grid; place-items: center;
+  transition: transform .2s ease;
+}
+.poster:hover .play { transform: scale(1.1); }
+.poster .play::after { content: ""; border-left: 12px solid #111; border-top: 7px solid transparent; border-bottom: 7px solid transparent; margin-left: 3px; }
+
+/* Poster art, composed per film until his own thumbnails go in */
+.art.ethan { background:
+  radial-gradient(60% 80% at 80% 20%, rgba(232,162,74,.55), transparent 60%),
+  repeating-linear-gradient(90deg, rgba(255,255,255,.05) 0 1px, transparent 1px 48px),
+  linear-gradient(160deg, #2c3a4f, #10161f 70%); }
+.art.sarah { background:
+  radial-gradient(70% 60% at 25% 30%, rgba(255,170,140,.55), transparent 65%),
+  linear-gradient(180deg, #5b3b5e 0%, #2a2340 55%, #14131d 100%); }
+.art.saree { background:
+  radial-gradient(50% 40% at 50% 28%, rgba(255,214,120,.6), transparent 70%),
+  repeating-linear-gradient(115deg, rgba(255,215,140,.16) 0 2px, transparent 2px 22px),
+  linear-gradient(180deg, #a3194a 0%, #5c0c2e 60%, #2a0616 100%); }
+.art.furniture { background:
+  radial-gradient(60% 35% at 50% 22%, rgba(255,226,170,.5), transparent 70%),
+  repeating-linear-gradient(0deg, rgba(0,0,0,.18) 0 1px, transparent 1px 9px),
+  linear-gradient(180deg, #6b4a2f 0%, #3d2818 55%, #1c120a 100%); }
+
+.meta { display: flex; flex-direction: column; gap: 10px; }
+.meta .client { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
+.meta h3 { margin: 0; font-size: 20px; font-weight: 600; line-height: 1.3; text-wrap: balance; }
+.meta p { margin: 0; color: var(--muted); }
+.credits { display: flex; flex-wrap: wrap; gap: 6px; padding: 0; margin: 4px 0 0; list-style: none; }
+.credits li { font-family: var(--mono); font-size: 11px; letter-spacing: .04em; border: 1px solid var(--line); color: var(--fg); padding: 3px 8px; border-radius: 2px; }
+.watch { font-size: 14px; font-weight: 600; color: var(--accent); text-decoration: none; width: fit-content; }
+.watch:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+.shorts-note { align-self: stretch; display: flex; flex-direction: column; justify-content: flex-end; gap: 14px; color: var(--muted); max-width: 40ch; }
+.shorts-note strong { color: var(--fg); font-weight: 600; }
+
+/* Story credit */
+.story { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 48px; align-items: start; }
+.story blockquote { margin: 0; font-family: var(--display); font-weight: 600; text-transform: uppercase; font-size: clamp(28px, 3.6vw, 40px); line-height: 1.05; }
+.story blockquote em { font-style: normal; color: var(--accent); }
+.beats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+.beat { padding: 18px; border-right: 1px solid var(--line); min-width: 0; }
+.beat:last-child { border-right: 0; }
+.beat .n { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+.beat h4 { margin: 6px 0 6px; font-family: var(--display); font-weight: 800; font-size: 26px; text-transform: uppercase; line-height: 1; }
+.beat p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
+.story .cap { margin: 14px 0 0; font-family: var(--mono); font-size: 12px; color: var(--muted); }
+
+/* Skills */
+.skills { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; }
+.skill h3 { margin: 0 0 8px; font-size: 17px; font-weight: 600; }
+.skill p { margin: 0; color: var(--muted); font-size: 15px; }
+.skill .tools { margin-top: 10px; font-family: var(--mono); font-size: 12px; color: var(--muted); }
+
+/* Contact */
+.contact .wrap { padding-block: 72px 88px; border-top: 1px solid var(--line); }
+.contact h2 { font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: clamp(44px, 8vw, 96px); line-height: .9; margin: 0 0 28px; text-wrap: balance; }
+.contact-row { display: flex; flex-wrap: wrap; gap: 14px 40px; align-items: center; }
+.email { font-size: clamp(18px, 2.4vw, 24px); font-weight: 500; user-select: all; overflow-wrap: anywhere; }
+.copy { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; background: transparent; color: var(--fg); border: 1px solid var(--line); padding: 8px 14px; border-radius: 2px; cursor: pointer; }
+.copy:hover { border-color: var(--accent); color: var(--accent); }
+.socials { display: flex; gap: 22px; flex-wrap: wrap; font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+footer .wrap { padding-block: 24px; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 11px; color: var(--muted); }
+
+
+
+.poster .thumb { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; transition: transform .6s ease; }
+.poster:hover .thumb { transform: scale(1.04); }
+/* Thumbnail gallery */
+.gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.shot { margin: 0; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.shot.wide { grid-column: 1 / -1; }
+.shot img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 4px; background: var(--surface); }
+.shot.wide img { aspect-ratio: auto; }
+.shot figcaption { display: flex; flex-direction: column; gap: 2px; }
+.g-series { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+.g-title { font-weight: 600; font-size: 16px; line-height: 1.35; }
+/* Scripts */
+.scripts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: start; }
+.script { border: 1px solid var(--line); border-radius: 4px; background: var(--surface); min-width: 0; }
+.script summary, .script.soon { display: flex; flex-direction: column; gap: 6px; padding: 20px; list-style: none; }
+.script summary { cursor: pointer; }
+.script summary::-webkit-details-marker { display: none; }
+.script summary::after { content: "Read the story +"; margin-top: 8px; font-size: 14px; font-weight: 600; color: var(--accent); }
+.script[open] summary::after { content: "Close −"; }
+.s-lang { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.s-title { font-family: var(--display); font-weight: 800; font-size: 30px; text-transform: uppercase; line-height: 1; }
+.s-log { color: var(--muted); font-size: 15px; }
+.s-body { padding: 0 20px 20px; border-top: 1px solid var(--line); }
+.s-body p { margin: 14px 0 0; font-size: 15px; max-width: 62ch; }
+.s-body .s-end { font-style: italic; color: var(--accent); }
+.script.soon { background: transparent; border-style: dashed; }
+
+/* About */
+.about { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 48px; }
+.about-text p { margin: 0 0 16px; max-width: 62ch; font-size: 17px; }
+.timeline { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.timeline li { display: grid; grid-template-columns: 9.5em minmax(0, 1fr); column-gap: 18px; row-gap: 2px; padding: 14px 0; border-top: 1px solid var(--line); }
+.timeline li:last-child { border-bottom: 1px solid var(--line); }
+.timeline .when { grid-row: span 3; font-family: var(--mono); font-size: 12px; color: var(--accent); padding-top: 3px; }
+.timeline .role { font-weight: 600; }
+.timeline .org { color: var(--muted); font-size: 14px; }
+.timeline .what { color: var(--muted); font-size: 14px; margin-top: 4px; }
+@media (max-width: 900px) {
+  .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .scripts { grid-template-columns: 1fr; }
+  .about { grid-template-columns: 1fr; gap: 28px; }
+}
+@media (max-width: 640px) {
+  .gallery { grid-template-columns: 1fr; gap: 20px; }
+  .timeline li { grid-template-columns: 1fr; }
+  .timeline .when { grid-row: auto; }
+}
+@media (max-width: 900px) {
+  .shorts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .shorts-note { grid-column: 1 / -1; max-width: none; }
+  .story { grid-template-columns: 1fr; gap: 28px; }
+  .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .films { grid-template-columns: 1fr; }
+  .shorts { gap: 16px; }
+  .poster.t .ptitle { font-size: 26px; left: 12px; right: 12px; }
+  .beats { grid-template-columns: 1fr; }
+  .beat { border-right: 0; border-bottom: 1px solid var(--line); }
+  .beat:last-child { border-bottom: 0; }
+  .skills { grid-template-columns: 1fr; gap: 22px; }
+  nav .links { gap: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .poster .art, .poster .play { transition: none; }
+  .poster:hover .art, .poster:hover .thumb { transform: none; }
+  .poster .thumb { transition: none; }
+}
+</style>
+</head>
+<body>
+
+
+
+<nav><div class="wrap">
+  <span>Yasin Alam · Dhaka</span>
+  <div class="links"><a href="#work">Work</a><a href="#shorts">Shorts</a><a href="#thumbnails">Thumbnails</a><a href="#scripts">Scripts</a><a href="#about">About</a><a href="#contact">Contact</a></div>
+</div></nav>
+
+<header class="hero"><div class="wrap hero-grid">
+  <div class="hero-text">
+  <div class="kicker">AI Video Portfolio · 2026</div>
+  <h1>Yasin<br>Alam</h1>
+  <div class="roles"><span>AI Video Specialist</span><span>Scriptwriter</span><span>Thumbnail Designer</span></div>
+  <p class="bio">I make AI-generated marketing films from the first line of the script to the thumbnail. I write in English and Bengali, direct the footage with Gemini and Veo, and design the artwork that gets each video clicked. With an MBA and a background in brand marketing, I build every story around what the business actually needs to say.</p>
+  </div>
+  <figure class="portrait"><img src="img/yasin.jpg" alt="Portrait of Yasin Alam standing in a field of tall grass"><figcaption>Yasin Alam · Dhaka</figcaption></figure>
+</div></header>
+
+<section class="block" id="work"><div class="wrap">
+  <div class="head">
+    <h2>Brand Films</h2>
+    <p>Story-led ads for Property Control, a property management SaaS platform. Each film turns a product feature into a character with a problem. Produced with Gemini and Veo, with a focus on lip-sync and keeping characters consistent from shot to shot.</p>
+  </div>
+  <div class="films">
+    <article class="film">
+      <a class="poster w" href="https://www.youtube.com/watch?v=zlbN3r3dbw8" target="_blank" rel="noopener" aria-label="Watch From Stress to Success on YouTube">
+        <div class="art ethan"></div>
+        <span class="fmt">16:9 · Brand film</span>
+        <span class="play" aria-hidden="true"></span>
+        <span class="ptitle">From Stress<br>to Success</span>
+      </a>
+      <div class="meta">
+        <span class="client">Property Control · Sai Chanda Consultation</span>
+        <h3>From Stress to Success: Ethan's Property Journey</h3>
+        <p>A confident landlord drowns in tenant calls, repairs and unpaid rent until one app pulls it all into one place. Confidence, then chaos, then control.</p>
+        <ul class="credits"><li>Script</li><li>AI direction</li><li>Thumbnail</li><li>Gemini / Veo</li></ul>
+        <a class="watch" href="https://www.youtube.com/watch?v=zlbN3r3dbw8" target="_blank" rel="noopener">Watch on YouTube ↗</a>
+      </div>
+    </article>
+    <article class="film">
+      <a class="poster w" href="https://www.youtube.com/watch?v=K9d0jtM0U5U" target="_blank" rel="noopener" aria-label="Watch Sarah's Story on YouTube">
+        <img class="thumb" src="img/sarah.jpg" alt="Thumbnail for Sarah's Story: a frustrated tenant beside a smiling couple in a bright apartment">
+        <span class="fmt">16:9 · Brand film</span>
+        <span class="play" aria-hidden="true"></span>
+      </a>
+      <div class="meta">
+        <span class="client">Property Control · Sai Chanda Consultation</span>
+        <h3>Sarah's Story: From Rental Frustration to Hassle-Free Living</h3>
+        <p>An MBA student moves three times in six months in Toronto. A cousin's tip leads her to a well-run rental, and she finally gets to focus on her studies.</p>
+        <ul class="credits"><li>Script</li><li>AI direction</li><li>Thumbnail</li><li>Gemini / Veo</li></ul>
+        <a class="watch" href="https://www.youtube.com/watch?v=K9d0jtM0U5U" target="_blank" rel="noopener">Watch on YouTube ↗</a>
+      </div>
+    </article>
+  </div>
+</div></section>
+
+<section class="block" id="shorts"><div class="wrap">
+  <div class="head">
+    <h2>Shorts</h2>
+    <p>Vertical spots built for Reels, TikTok and YouTube Shorts.</p>
+  </div>
+  <div class="shorts">
+    <article class="film">
+      <a class="poster t" href="https://www.youtube.com/shorts/O758zsnusKM" target="_blank" rel="noopener" aria-label="Watch the Bangladeshi saree short on YouTube">
+        <div class="art saree"></div>
+        <span class="fmt">9:16 · Fashion</span>
+        <span class="play" aria-hidden="true"></span>
+        <span class="ptitle">The<br>Saree<br>Walk</span>
+      </a>
+      <div class="meta">
+        <h3>Bangladeshi Saree</h3>
+        <p>A model moves through the frame in a traditional Bangladeshi saree, with the fabric's drape and detail carrying the film.</p>
+        <a class="watch" href="https://www.youtube.com/shorts/O758zsnusKM" target="_blank" rel="noopener">Watch on YouTube ↗</a>
+      </div>
+    </article>
+    <article class="film">
+      <a class="poster t" href="https://www.youtube.com/shorts/EP6NJBKu4xI" target="_blank" rel="noopener" aria-label="Watch the luxury furniture short on YouTube">
+        <div class="art furniture"></div>
+        <span class="fmt">9:16 · Product ad</span>
+        <span class="play" aria-hidden="true"></span>
+        <span class="ptitle">Luxury<br>Living</span>
+      </a>
+      <div class="meta">
+        <h3>Luxury Furniture</h3>
+        <p>A short product ad for high-end furniture, lit and paced to sell texture, material and atmosphere.</p>
+        <a class="watch" href="https://www.youtube.com/shorts/EP6NJBKu4xI" target="_blank" rel="noopener">Watch on YouTube ↗</a>
+      </div>
+    </article>
+    <div class="shorts-note">
+      <p><strong>Range in under a minute.</strong> The fashion piece is about movement and fabric. The furniture piece is about light and material. Both show control over pacing and composition in a vertical frame.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="block" id="story-craft"><div class="wrap">
+  <div class="head"><h2>Written, Not Just Prompted</h2></div>
+  <div class="story">
+    <blockquote>Every brand film starts as a <em>story</em>: a character, a problem, and a turn.</blockquote>
+    <div>
+      <div class="beats">
+        <div class="beat"><div class="n">Setup</div><h4>Confidence</h4><p>Ethan believes he can run every property himself.</p></div>
+        <div class="beat"><div class="n">Conflict</div><h4>Chaos</h4><p>Leaks, repairs, an upset tenant and a manager asking for overdue payments, all at once.</p></div>
+        <div class="beat"><div class="n">Resolution</div><h4>Control</h4><p>One app, faster service, and a manager who says it was a great decision.</p></div>
+      </div>
+      <p class="cap">Story structure from "From Stress to Success," written by Yasin Alam</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="block" id="thumbnails"><div class="wrap">
+  <div class="head">
+    <h2>Thumbnail Design</h2>
+    <p>Every cover is designed by Yasin with AI image tools, then laid out for a phone screen where it has a second to earn the click.</p>
+  </div>
+  <div class="gallery">
+    <figure class="shot wide">
+      <img src="img/battery-inside.jpg" alt="Sodium-ion vs Lithium-ion thumbnail: a puzzled scientist between two cut-away batteries" loading="lazy">
+      <figcaption><span class="g-series">Battery Explainer Series</span><span class="g-title">Sodium-Ion vs Lithium-Ion: What Really Happens Inside?</span></figcaption>
+    </figure>
+    <figure class="shot">
+      <img src="img/battery-ep1.jpg" alt="Episode 1 infographic thumbnail comparing lithium-ion and sodium-ion batteries" loading="lazy">
+      <figcaption><span class="g-series">Battery Explainer · Episode 1</span><span class="g-title">Lithium-Ion vs Sodium-Ion Battery</span></figcaption>
+    </figure>
+    <figure class="shot">
+      <img src="img/battery-ep3.jpg" alt="Episode 3 thumbnail showing a cut-away sodium-ion cell with labelled cathode, separator and anode" loading="lazy">
+      <figcaption><span class="g-series">Battery Explainer · Episode 3</span><span class="g-title">Sodium-Ion: The Next Generation Battery</span></figcaption>
+    </figure>
+    <figure class="shot">
+      <img src="img/sarah.jpg" alt="Sarah's Story thumbnail for Property Control" loading="lazy">
+      <figcaption><span class="g-series">Property Control</span><span class="g-title">From Rental Frustration to Hassle-Free Living</span></figcaption>
+    </figure>
+  </div>
+</div></section>
+
+<section class="block" id="scripts"><div class="wrap">
+  <div class="head">
+    <h2>Scripts</h2>
+    <p>The stories behind the films. Full scripts, in English and Bengali, will be added here.</p>
+  </div>
+  <div class="scripts">
+    <details class="script">
+      <summary><span class="s-lang">English · Brand film</span><span class="s-title">From Stress to Success</span><span class="s-log">A landlord who thinks he can do it all learns when to let software help.</span></summary>
+      <div class="s-body">
+        <p>Ethan is a confident property owner who handles every tenant request, repair and payment himself. It works, until the calls start stacking up: a water problem, a maintenance job, an elderly tenant upset that nothing has been fixed.</p>
+        <p>In the middle of it, his manager asks for the list of tenants with outstanding payments. Ethan has to send him away. He realises that phone calls, notes, files and invoices are no longer enough.</p>
+        <p>He tries Property Control. Requests, maintenance and payments move into one place, tenants get faster service, and his manager tells him it was a great decision.</p>
+        <p class="s-end">Property Control. Manage smarter. Save time.</p>
+      </div>
+    </details>
+    <details class="script">
+      <summary><span class="s-lang">English · Brand film</span><span class="s-title">Sarah's Story</span><span class="s-log">A student's rental nightmare, told from the tenant's side of the same product.</span></summary>
+      <div class="s-body">
+        <p>Sarah graduates in Ottawa and moves to Toronto for her MBA. In six months she changes homes three times. One place has maintenance problems, another has payment issues, and her latest has a broken sink that has gone unfixed for two months.</p>
+        <p>She tells her cousin Laura, who suggests a property run by Mr. Jon, a landlord who uses Property Control. Sarah visits, likes it and moves in.</p>
+        <p>This time repairs are handled, payments are smooth and her requests are answered. With home finally sorted, she can focus on her studies.</p>
+        <p class="s-end">Are you just renting a house, or choosing a smarter way to live?</p>
+      </div>
+    </details>
+    <div class="script soon">
+      <span class="s-lang">Bengali · Coming soon</span>
+      <span class="s-title">More scripts</span>
+      <span class="s-log">Product-feature scripts for Unit Management and Lease &amp; Document Management.</span>
+    </div>
+  </div>
+</div></section>
+
+<section class="block" id="about"><div class="wrap">
+  <div class="head"><h2>About</h2><p>Based in Dhaka, Bangladesh. Writes and works in Bangla and English.</p></div>
+  <div class="about">
+    <div class="about-text">
+      <p>I came to AI video from business. I studied finance at Ahsanullah University of Science and Technology, then completed an MBA in Organizational Strategy and Leadership at the University of Dhaka. Before video, I worked as a business analyst and as a brand and marketing executive, running product listings, social content and campaigns.</p>
+      <p>That background shapes how I make films. I start from the message a business needs to land, then write characters people recognise. Outside work I paint, make handcrafts and take photographs, which is where my eye for composition and colour comes from. Years of debating taught me how to hold an audience.</p>
+    </div>
+    <ol class="timeline">
+      <li><span class="when">May 2026 – Now</span><span class="role">AI Video Specialist</span><span class="org">Sai Chanda Consultation</span><span class="what">Marketing films for Property Control with Gemini and Veo. English and Bengali scripts, YouTube thumbnails, and content across YouTube, Facebook and Instagram.</span></li>
+      <li><span class="when">Aug – Dec 2025</span><span class="role">Brand &amp; Marketing Executive</span><span class="org">Fitment Craft</span><span class="what">Product uploads on Shopify and Odoo, social media and content campaigns, market analysis.</span></li>
+      <li><span class="when">Jan 2023 – Mar 2025</span><span class="role">Business Analyst</span><span class="org">Sai Chanda Consultation</span><span class="what">Sales summaries, data research and app improvement recommendations.</span></li>
+      <li><span class="when">2023 – 2025</span><span class="role">MBA, Organizational Strategy &amp; Leadership</span><span class="org">University of Dhaka</span></li>
+    </ol>
+  </div>
+</div></section>
+
+<section class="block"><div class="wrap">
+  <div class="head"><h2>What I Do</h2></div>
+  <div class="skills">
+    <div class="skill"><h3>Bilingual scripts</h3><p>Characters, conflict and dialogue in English and Bengali, built around a product's features.</p></div>
+    <div class="skill"><h3>AI video generation</h3><p>Consistent characters, better lip-sync and coherent scenes across shots.</p><div class="tools">Gemini · Veo</div></div>
+    <div class="skill"><h3>Social &amp; distribution</h3><p>Publishing and managing content on YouTube, Facebook and Instagram to grow reach.</p></div>
+    <div class="skill"><h3>Thumbnail design</h3><p>Original cover art for every video, designed to earn the click.</p></div>
+  </div>
+</div></section>
+
+<section class="contact" id="contact"><div class="wrap">
+  <h2>Have a story to tell?</h2>
+  <div class="contact-row">
+    <span class="email" id="email">yasin.alam.616@gmail.com</span>
+    <button class="copy" id="copyBtn" type="button">Copy email</button>
+    <div class="socials"><a href="https://www.linkedin.com/in/yasin-alam-67048823a/" target="_blank" rel="noopener">LinkedIn ↗</a><a href="https://www.youtube.com/channel/UCcOKIZEThyjq106Q2AmVV3Q" target="_blank" rel="noopener">YouTube ↗</a></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">© 2026 Yasin Alam · Dhaka, Bangladesh</div></footer>
+
+<script>
+document.getElementById('copyBtn').addEventListener('click', function () {
+  var btn = this, text = document.getElementById('email').textContent.trim();
+  function done(msg){ btn.textContent = msg; setTimeout(function(){ btn.textContent = 'Copy email'; }, 1800); }
+  function fallback(){
+    var r = document.createRange(); r.selectNodeContents(document.getElementById('email'));
+    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); done('Selected');
+  }
+  try {
+    navigator.clipboard.writeText(text).then(function(){ done('Copied'); }, fallback);
+  } catch (e) { fallback(); }
+});
+</script>
+
+<script>
+document.querySelectorAll('a.poster[href*="youtube.com"]').forEach(function (a) {
+  a.addEventListener('click', function (e) {
+    var m = a.href.match(/(?:v=|shorts\/)([\w-]{11})/);
+    if (!m) return;
+    e.preventDefault();
+    var f = document.createElement('iframe');
+    f.src = 'https://www.youtube-nocookie.com/embed/' + m[1] + '?autoplay=1&rel=0';
+    f.title = a.getAttribute('aria-label') || 'Video';
+    f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    f.allowFullscreen = true;
+    f.className = 'player';
+    var box = document.createElement('div');
+    box.className = a.className + ' playing';
+    box.appendChild(f);
+    a.replaceWith(box);
+  });
+});
+</script>
+</body>
+</html>
