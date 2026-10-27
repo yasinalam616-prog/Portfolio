@@ -184,6 +184,10 @@ section.block .wrap { padding-block: 56px; border-top: 1px solid var(--line); }
 .contact .wrap { padding-block: 72px 88px; border-top: 1px solid var(--line); }
 .contact h2 { font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: clamp(44px, 8vw, 96px); line-height: .9; margin: 0 0 28px; text-wrap: balance; }
 .contact-row { display: flex; flex-wrap: wrap; gap: 14px 40px; align-items: center; }
+.contact-row + .contact-row { margin-top: 18px; }
+.phone { text-decoration: none; }
+.phone:hover { color: var(--accent); }
+a.copy { text-decoration: none; display: inline-block; }
 .email { font-size: clamp(18px, 2.4vw, 24px); font-weight: 500; user-select: all; overflow-wrap: anywhere; }
 .copy { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; background: transparent; color: var(--fg); border: 1px solid var(--line); padding: 8px 14px; border-radius: 2px; cursor: pointer; }
 .copy:hover { border-color: var(--accent); color: var(--accent); }
@@ -460,6 +464,12 @@ footer .wrap { padding-block: 24px; border-top: 1px solid var(--line); font-fami
   <div class="contact-row">
     <span class="email" id="email">yasin.alam.616@gmail.com</span>
     <button class="copy" id="copyBtn" type="button">Copy email</button>
+  </div>
+  <div class="contact-row phone-row">
+    <a class="email phone" href="tel:+8801758433862">+880 1758-433862</a>
+    <a class="copy" href="https://wa.me/8801758433862" target="_blank" rel="noopener">WhatsApp ↗</a>
+  </div>
+  <div class="contact-row socials-row">
     <div class="socials"><a href="https://www.linkedin.com/in/yasin-alam-67048823a/" target="_blank" rel="noopener">LinkedIn ↗</a><a href="https://www.youtube.com/channel/UCcOKIZEThyjq106Q2AmVV3Q" target="_blank" rel="noopener">YouTube ↗</a></div>
   </div>
 </div></section>
