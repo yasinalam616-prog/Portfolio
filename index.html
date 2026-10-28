@@ -17,7 +17,7 @@
 <meta name="twitter:image" content="https://yasinalam616-prog.github.io/Portfolio/img/share-yasin.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Bengali:wght@400;600&display=swap">
 <style>
 /* Layout: a screening programme. Marquee name, then each film presented as a poster with its credit block. Single dark "theatre" look by choice. */
 :root {
@@ -29,7 +29,7 @@
   --accent: #e8a24a;       /* projector-lamp amber */
   --placeholder: #f0c27a;
   --display: "Big Shoulders Display", "Oswald", "Arial Narrow", Impact, sans-serif;
-  --body: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+  --body: "Instrument Sans", "Noto Sans Bengali", "Helvetica Neue", Arial, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
   color-scheme: dark;
 }
@@ -219,6 +219,36 @@ footer .wrap { padding-block: 24px; border-top: 1px solid var(--line); font-fami
 @media (max-width: 900px) { .awards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 640px) { .awards { grid-template-columns: 1fr; gap: 28px; } }
 
+/* Full scripts */
+.sf-list { display: flex; flex-direction: column; gap: 14px; }
+.sf { border: 1px solid var(--line); border-radius: 4px; background: var(--surface); min-width: 0; }
+.sf summary { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 24px; row-gap: 6px; padding: 20px 22px; cursor: pointer; list-style: none; }
+.sf summary::-webkit-details-marker { display: none; }
+.sf summary::after { content: "Read script +"; grid-column: 2; grid-row: 1 / span 3; align-self: center; font-size: 14px; font-weight: 600; color: var(--accent); white-space: nowrap; }
+.sf[open] summary::after { content: "Close −"; }
+.sf summary:hover .sf-title { color: var(--accent); }
+.sf-meta { display: flex; flex-wrap: wrap; gap: 6px 14px; font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.sf-meta span:first-child { color: var(--accent); }
+.sf-title { font-family: var(--display); font-weight: 800; font-size: clamp(26px, 3vw, 34px); text-transform: uppercase; line-height: 1; transition: color .2s ease; }
+.sf-log { color: var(--muted); font-size: 15px; max-width: 70ch; }
+.sf-body { padding: 4px 22px 26px; border-top: 1px solid var(--line); max-width: 78ch; }
+.sf-body h4 { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin: 26px 0 8px; font-size: 17px; font-weight: 600; font-family: var(--body); }
+.sf-body p, .sf-body li { margin: 8px 0 0; font-size: 15px; line-height: 1.65; }
+.sf-body ul { margin: 8px 0 0; padding-left: 20px; }
+.sf-body[lang="bn"] p, .sf-body[lang="bn"] li { line-height: 1.85; }
+.sf-note { font-family: var(--mono); font-size: 12px !important; color: var(--muted); margin-top: 18px !important; }
+.tc { font-family: var(--mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--bg); background: var(--accent); padding: 2px 7px; border-radius: 2px; margin-right: 8px; white-space: nowrap; vertical-align: 1px; }
+.dur { font-family: var(--mono); font-size: 11px; color: var(--muted); font-weight: 400; }
+.sf-body .line { padding: 6px 0 6px 14px; border-left: 2px solid var(--accent); }
+.who { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
+.sf-body .sty { color: var(--muted); font-size: 14px; }
+@media (max-width: 640px) {
+  .sf summary { grid-template-columns: 1fr; padding: 18px; }
+  .sf summary::after { grid-column: 1; grid-row: auto; margin-top: 6px; }
+  .sf-body { padding: 4px 18px 22px; }
+}
+@media (prefers-reduced-motion: reduce) { .sf-title { transition: none; } }
+
 /* Scripts */
 .scripts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: start; }
 .script { border: 1px solid var(--line); border-radius: 4px; background: var(--surface); min-width: 0; }
@@ -284,7 +314,7 @@ footer .wrap { padding-block: 24px; border-top: 1px solid var(--line); font-fami
 
 <nav><div class="wrap">
   <span>Yasin Alam · Dhaka</span>
-  <div class="links"><a href="#work">Work</a><a href="#shorts">Shorts</a><a href="#thumbnails">Thumbnails</a><a href="#scripts">Scripts</a><a href="#about">About</a><a href="#achievements">Achievements</a><a href="#contact">Contact</a></div>
+  <div class="links"><a href="#work">Work</a><a href="#shorts">Shorts</a><a href="#thumbnails">Thumbnails</a><a href="#stories">Stories</a><a href="#scripts">Scripts</a><a href="#about">About</a><a href="#achievements">Achievements</a><a href="#contact">Contact</a></div>
 </div></nav>
 
 <header class="hero"><div class="wrap hero-grid">
@@ -411,10 +441,10 @@ footer .wrap { padding-block: 24px; border-top: 1px solid var(--line); font-fami
   </div>
 </div></section>
 
-<section class="block" id="scripts"><div class="wrap">
+<section class="block" id="stories"><div class="wrap">
   <div class="head">
-    <h2>Scripts</h2>
-    <p>The stories behind the films. Full scripts, in English and Bengali, will be added here.</p>
+    <h2>Stories</h2>
+    <p>The stories behind the brand films, told in short. Every film starts here, before a single frame is generated.</p>
   </div>
   <div class="scripts">
     <details class="script">
@@ -435,11 +465,193 @@ footer .wrap { padding-block: 24px; border-top: 1px solid var(--line); font-fami
         <p class="s-end">Are you just renting a house, or choosing a smarter way to live?</p>
       </div>
     </details>
-    <div class="script soon">
-      <span class="s-lang">Bengali · Coming soon</span>
-      <span class="s-title">More scripts</span>
-      <span class="s-log">Product-feature scripts for Unit Management and Lease &amp; Document Management.</span>
-    </div>
+  </div>
+</div></section>
+
+<section class="block" id="scripts"><div class="wrap">
+  <div class="head">
+    <h2>Scripts</h2>
+    <p>Yasin comes up with each story himself: the characters, the problem and how it turns around. He then works out the scene-by-scene script together with AI writing assistants (ChatGPT and Claude), refining the timing, dialogue and camera directions until it is ready to generate in Gemini and Veo.</p>
+  </div>
+  <div class="sf-list">
+
+    <details class="sf">
+      <summary>
+        <span class="sf-meta"><span>Property Control</span><span>English</span><span>11 scenes · ~110 sec</span></span>
+        <span class="sf-title">Ethan's Journey from Chaos to Control</span>
+        <span class="sf-log">The full scene-by-scene script behind "From Stress to Success," with dialogue written for lip-synced AI characters.</span>
+      </summary>
+      <div class="sf-body">
+        <p class="sf-note">Complete Gemini video script · Property Control case study</p>
+
+        <h4><span class="tc">Scene 01</span> Ethan's Confidence <span class="dur">10 sec</span></h4>
+        <p><b>Visual:</b> Ethan, a confident 35–40-year-old property owner, sits in his modern office, reviewing property documents on his laptop. He looks relaxed and believes everything is under control.</p>
+        <p class="line"><span class="who">Ethan</span>“I can manage all my properties myself. How difficult can it be?”</p>
+        <p>Suddenly, his phone rings. He answers the call.</p>
+        <p class="sty"><b>Style:</b> Ultra-realistic cinematic office, professional appearance, natural acting, smooth camera movement, realistic lip-sync, no narrator, no subtitles.</p>
+
+        <h4><span class="tc">Scene 02</span> The First Problem <span class="dur">10 sec</span></h4>
+        <p><b>Visual:</b> Ethan answers his phone while sitting at his desk. The camera slowly moves closer to his face.</p>
+        <p class="line"><span class="who">Tenant 1 (on phone)</span>“Ethan, there's a water problem in my apartment. Could you arrange a repair?”</p>
+        <p class="line"><span class="who">Ethan</span>“Of course. I'll take care of it.”</p>
+        <p>He quickly writes the request in his notebook and returns to work.</p>
+        <p class="sty"><b>Style:</b> Realistic office environment, natural phone conversation, subtle concern, cinematic close-up, realistic lip-sync, no narrator.</p>
+
+        <h4><span class="tc">Scene 03</span> Problems Keep Coming <span class="dur">10 sec</span></h4>
+        <p><b>Visual:</b> Ethan receives another call, followed by several phone notifications. He switches between his phone, laptop, and handwritten notes.</p>
+        <p class="line"><span class="who">Tenant 2 (on phone)</span>“Ethan, I have a maintenance problem.”</p>
+        <p>Another call comes in.</p>
+        <p class="line"><span class="who">Tenant 3 (on phone)</span>“Ethan, any update on my previous request?”</p>
+        <p>Ethan looks overwhelmed.</p>
+        <p class="line"><span class="who">Ethan</span>“Oh, not another one!”</p>
+        <p class="sty"><b>Style:</b> Fast-paced cinematic montage, realistic phone interactions, increasingly frustrated expressions, smooth cuts, realistic lip-sync, no narrator.</p>
+
+        <h4><span class="tc">Scene 04</span> The Payment Problem <span class="dur">10 sec</span></h4>
+        <p><b>Visual:</b> Ethan searches through invoices and payment records scattered across his desk. His manager approaches respectfully and stands beside him.</p>
+        <p class="line"><span class="who">Manager</span>“Sir, could you please provide the list of tenants with outstanding payments?”</p>
+        <p class="line"><span class="who">Ethan (frustrated)</span>“I'm busy right now. Please come back later.”</p>
+        <p>The manager politely steps away while Ethan continues searching.</p>
+        <p class="sty"><b>Style:</b> Realistic corporate office, Ethan remains the main character, manager appears briefly, natural acting, realistic lip-sync, no narrator.</p>
+
+        <h4><span class="tc">Scene 05</span> Looking for a Better Way <span class="dur">10 sec</span></h4>
+        <p><b>Visual:</b> In the evening, Ethan sits alone at his desk, surrounded by paperwork. He rubs his forehead, looks at his phone, and then searches on his laptop for a better property management solution.</p>
+        <p class="line"><span class="who">Ethan</span>“There must be a better way to manage all these requests, repairs, and payments.”</p>
+        <p>He notices Property Control on his laptop and opens it with interest.</p>
+        <p class="sty"><b>Style:</b> Cinematic lighting, realistic emotional acting, close-up of laptop interaction, smooth transition from frustration to curiosity, no narrator.</p>
+
+        <h4><span class="tc">Scene 06</span> Discovering Property Control <span class="dur">10 sec</span></h4>
+        <p><b>Visual:</b> Ethan explores the Property Control dashboard on his laptop. The interface looks clean and organized. He opens the tenant request section, checks maintenance requests, and views payment information.</p>
+        <p class="line"><span class="who">Ethan</span>“Wow! I can manage everything in one place.”</p>
+        <p>He smiles with relief and begins using the system confidently.</p>
+        <p class="sty"><b>Style:</b> Premium realistic corporate visuals, believable software interface, clear screen interactions, natural expressions, realistic lip-sync, no narrator.</p>
+
+        <h4><span class="tc">Scene 07</span> Everything Becomes Easier <span class="dur">10 sec</span></h4>
+        <p><b>Visual:</b> A fast cinematic montage shows Ethan using Property Control:</p>
+        <ul><li>Tracking a tenant request.</li><li>Assigning a maintenance request to a worker.</li><li>Creating an invoice.</li><li>Checking outstanding payments.</li><li>Updating a payment record.</li></ul>
+        <p>Ethan works smoothly without searching through piles of paperwork.</p>
+        <p class="line"><span class="who">Ethan</span>“Now I can manage requests, maintenance, invoices, and payments so easily!”</p>
+        <p class="sty"><b>Style:</b> Fast but clear cinematic montage, realistic software interaction, smooth transitions, professional office, no narrator, no subtitles.</p>
+
+        <h4><span class="tc">Scene 08</span> Tenant 1: The Water Problem <span class="dur">10 sec</span></h4>
+        <p><b>Visual:</b> Two quick shots: Ethan tracks the water complaint through Property Control, then a maintenance worker repairs the leaking sink in the tenant's apartment. The tenant turns on the tap and sees that the water is flowing properly.</p>
+        <p class="line"><span class="who">Tenant 1</span>“Great! The water problem is finally fixed. Thank you!”</p>
+        <p>The tenant smiles with relief.</p>
+        <p class="sty"><b>Style:</b> Realistic apartment, believable repair work, clear problem resolution, happy natural expression, smooth transitions, no Ethan dialogue, no narrator.</p>
+
+        <h4><span class="tc">Scene 09</span> Tenant 2: Easy Property Management <span class="dur">10 sec</span></h4>
+        <p><b>Visual:</b> A female tenant sits comfortably on her sofa, using the Property Control app on her smartphone. She checks her property-related information and manages her request easily.</p>
+        <p class="line"><span class="who">Tenant 2</span>“Wow, Property Control is really amazing! I can manage everything so easily now.”</p>
+        <p>She smiles happily and continues using the app.</p>
+        <p class="sty"><b>Style:</b> Cozy modern home, realistic female character, natural smartphone interaction, genuine happiness, realistic lip-sync, no Ethan, no narrator.</p>
+
+        <h4><span class="tc">Scene 10</span> Tenant 3: Faster Service <span class="dur">10 sec</span></h4>
+        <p><b>Visual:</b> An elderly male tenant sits comfortably on his sofa, using the Property Control app on his phone. He checks his request status and sees that his request has been handled. He looks impressed and satisfied.</p>
+        <p class="line"><span class="who">Tenant 3</span>“Wow, this new app works so fast! My requests are handled so easily. It's awesome!”</p>
+        <p>He smiles happily and puts his phone down.</p>
+        <p class="sty"><b>Style:</b> Realistic cozy home, elderly male character, natural expressions, realistic smartphone interaction, cinematic camera movement, realistic lip-sync, no Ethan, no narrator.</p>
+
+        <h4><span class="tc">Scene 11</span> The Final Transformation <span class="dur">10 sec</span></h4>
+        <p><b>Visual:</b> A few days later, Ethan sits confidently in his clean, organized office, using the Property Control dashboard. His manager enters respectfully.</p>
+        <p class="line"><span class="who">Manager</span>“Sir, could you please give me the outstanding payment list?”</p>
+        <p>Ethan immediately shows him the organized list on his laptop.</p>
+        <p class="line"><span class="who">Ethan</span>“Of course. Here you go!”</p>
+        <p>The manager looks impressed.</p>
+        <p class="line"><span class="who">Manager</span>“That was fast, sir!”</p>
+        <p>Ethan smiles confidently.</p>
+        <p class="line"><span class="who">Ethan</span>“Property Control makes everything easier!”</p>
+        <p><b>Final visual:</b> Smooth close-up of the Property Control dashboard, followed by a clean logo end screen.</p>
+      </div>
+    </details>
+
+    <details class="sf">
+      <summary>
+        <span class="sf-meta"><span>BiBir Shinduk</span><span>English</span><span>2 parts · 20 sec</span></span>
+        <span class="sf-title">Saree Fashion Film</span>
+        <span class="sf-log">The two-part prompt script behind "Grace in Every Step": a continuous 20-second walk through a Bangladeshi heritage house, with strict continuity between the parts.</span>
+      </summary>
+      <div class="sf-body">
+        <h4><span class="tc">Part 1</span> The Courtyard <span class="dur">10 sec</span></h4>
+        <p>Create a 10-second ultra-realistic, premium cinematic saree fashion video at a traditional heritage house in Bangladesh.</p>
+        <p><span class="tc">0–3 sec</span> A beautiful young Bangladeshi female model wearing an elegant traditional saree stands gracefully in the historic courtyard of the traditional heritage house. A gentle breeze moves her saree naturally as she holds its pallu delicately.</p>
+        <p><span class="tc">3–7 sec</span> She begins walking gracefully through the courtyard. Use smooth cinematic tracking shots, showing her elegant walk, beautiful saree details, and flowing pallu in slow motion.</p>
+        <p><span class="tc">7–10 sec</span> She gently turns her body, allowing the saree's pallu to swirl beautifully in the breeze. End with her beginning to walk toward the historic stairs.</p>
+        <p class="sty"><b>Visual style:</b> Ultra-realistic 4K, luxury Bangladeshi saree advertisement, authentic traditional architecture, natural daylight, graceful movements, realistic fabric physics, cinematic camera work, premium color grading.</p>
+        <p class="sty"><b>Audio:</b> No dialogue, no voice-over, no music, no text, no subtitles. Only subtle natural ambience and soft fabric movement.</p>
+        <p>Maintain realistic anatomy, natural expressions, and consistent saree details. This is Part 1 of a continuous 20-second fashion film. End with the model approaching the stairs, ready for the next scene.</p>
+
+        <h4><span class="tc">Part 2</span> The Stairs <span class="dur">10 sec</span></h4>
+        <p>Create Part 2 of the same ultra-realistic cinematic saree fashion video at the same traditional heritage house in Bangladesh. Continue directly from Part 1.</p>
+        <p><b>Continuity:</b> Use the exact same female model, face, hairstyle, saree color, jewelry, lighting, and environment. Begin with the model approaching the historic stairs, matching the ending of Part 1.</p>
+        <p><span class="tc">0–3 sec</span> The model gracefully walks up to the stairs, gently lifting the edge of her saree to avoid stepping on it. Her pallu flows naturally behind her.</p>
+        <p><span class="tc">3–7 sec</span> She slowly sits elegantly on the historic steps, arranging her saree gracefully as the pallu falls naturally beside her. Capture the movement in a beautiful cinematic side angle.</p>
+        <p><span class="tc">7–10 sec</span> She turns slightly toward the camera with a soft, confident smile. The camera slowly moves closer for a stunning final fashion portrait, with the traditional heritage house's historic architecture softly visible behind her.</p>
+        <p class="sty"><b>Visual style:</b> Ultra-realistic 4K, premium luxury saree commercial, graceful traditional styling, natural fabric movement, cinematic slow motion, soft daylight, realistic skin texture, elegant composition.</p>
+        <p class="sty"><b>Audio:</b> No dialogue, no voice-over, no music, no text, and no subtitles. Only subtle natural ambience and gentle fabric sounds.</p>
+        <p>Ensure smooth, physically realistic movements and a beautiful, professional ending. Do not change the model's appearance or saree from Part 1.</p>
+      </div>
+    </details>
+
+    <details class="sf">
+      <summary>
+        <span class="sf-meta"><span>Fitment Craft</span><span>Bengali</span><span>2 parts · 20 sec</span></span>
+        <span class="sf-title">Luxury Furniture Ad</span>
+        <span class="sf-log">A music-only product film: fast zooms and slow-motion close-ups of a sofa and walnut table, with a model guiding the viewer through the room.</span>
+      </summary>
+      <div class="sf-body" lang="bn">
+        <h4><span class="tc">Part 1</span> <span lang="en">The Living Room</span> <span class="dur">10 sec</span></h4>
+        <p>১০ সেকেন্ডের একটি অত্যন্ত আকর্ষণীয়, ultra-realistic, premium furniture advertisement তৈরি করো। ভিডিওর স্টাইল হবে Hatil-এর luxury furniture commercial-এর মতো।</p>
+        <p><b>Environment:</b> একটি বিলাসবহুল আধুনিক living room। সুন্দর premium sofa, elegant wooden coffee table, stylish cushions, soft carpet, বড় জানালা এবং warm golden lighting থাকবে। পুরো পরিবেশ হবে পরিষ্কার, রুচিশীল ও মনোমুগ্ধকর।</p>
+        <p><span class="tc">0–2 sec</span> পুরো living room-এর একটি cinematic wide shot দিয়ে শুরু করো। ক্যামেরা দ্রুত কিন্তু মসৃণভাবে zoom-in করে sofa-র দিকে এগিয়ে যাবে। আলো ও furniture-এর সৌন্দর্য প্রথম মুহূর্তেই দর্শকের দৃষ্টি আকর্ষণ করবে।</p>
+        <p><span class="tc">2–4 sec</span> Sofa-র premium fabric, cushion এবং wooden table-এর polished surface-এর extreme close-up দেখাও। দ্রুত zoom-in থেকে smooth zoom-out এবং cinematic camera movement ব্যবহার করো।</p>
+        <p><span class="tc">4–7 sec</span> একজন অত্যন্ত আকর্ষণীয় তরুণী বাংলাদেশি female model, মার্জিত ও stylish পোশাকে, graceful movement-এর মাধ্যমে sofa-র দিকে এগিয়ে আসবেন। তিনি আলতো করে sofa-র fabric স্পর্শ করবেন এবং table-এর উপর হাত বুলিয়ে দেবেন। হাতের movement এবং পোশাকের স্বাভাবিক নড়াচড়া slow motion-এ দেখাও।</p>
+        <p><span class="tc">7–10 sec</span> মডেল সুন্দরভাবে sofa-তে বসবেন। প্রথমে তাঁর elegant expression-এর close-up, তারপর sofa ও table-এর দ্রুত cinematic close-up এবং শেষে smooth zoom-out করে পুরো living room দেখাও।</p>
+        <p class="sty"><b>Music:</b> কোনো voice-over, narration, dialogue বা মানুষের কথা থাকবে না। শুধু অত্যন্ত আকর্ষণীয়, premium, elegant instrumental background music ব্যবহার করো। Music হবে cinematic, emotional, sophisticated এবং modern luxury brand advertisement-এর উপযোগী। শুরুতে আকর্ষণীয় musical beat, মাঝখানে smooth rhythmic build-up এবং শেষে elegant musical finish থাকবে।</p>
+        <p class="sty"><b>Visual quality:</b> Ultra-realistic, high-end commercial cinematography, realistic human movements, cinematic lighting, detailed furniture textures, dynamic zoom-in/zoom-out, selected slow-motion shots এবং seamless transitions।</p>
+        <p>একই female model, outfit, furniture এবং room design বজায় রাখবে। Cartoon style, distorted hands, unnatural body movements, excessive blur বা unnecessary text ব্যবহার করবে না।</p>
+
+        <h4><span class="tc">Part 2</span> <span lang="en">The Continuation</span> <span class="dur">10 sec</span></h4>
+        <p>আগের ১০ সেকেন্ডের furniture advertisement-এর সরাসরি continuation হিসেবে আরও ১০ সেকেন্ডের ভিডিও তৈরি করো। আগের একই attractive Bangladeshi female model, একই পোশাক, sofa, wooden table এবং living room বজায় রাখবে। আগের ভিডিওর premium instrumental music-এর সঙ্গে এই অংশের music ও rhythm মিলিয়ে দেবে।</p>
+        <p><span class="tc">0–3 sec</span> মডেল sofa থেকে সুন্দরভাবে উঠে দাঁড়াবেন এবং ধীরে ধীরে coffee table-এর পাশে এগিয়ে যাবেন। তিনি table-এর polished wooden surface আলতো করে স্পর্শ করবেন। হাতের movement, furniture-এর texture এবং model-এর graceful expression-এর cinematic close-up দেখাও। এখানে একটি সুন্দর slow-motion shot ব্যবহার করো।</p>
+        <p><span class="tc">3–6 sec</span> ক্যামেরা দ্রুত zoom-in করে sofa-র cushions, fabric এবং table-এর design দেখাবে। তারপর smooth zoom-out করে মডেলসহ পুরো furniture arrangement দেখাবে। Camera movement হবে dynamic, stylish এবং visually satisfying।</p>
+        <p><span class="tc">6–8 sec</span> মডেল sofa-তে আরাম করে বসবেন এবং একটি স্বাভাবিক, আত্মবিশ্বাসী হাসি দেবেন। ক্যামেরা তাঁর পাশ দিয়ে smooth cinematic movement-এ ঘুরে furniture-এর সৌন্দর্য তুলে ধরবে। এই অংশে warm sunlight এবং soft shadows ব্যবহার করো।</p>
+        <p><span class="tc">8–10 sec</span> একটি dramatic, smooth zoom-out দিয়ে সম্পূর্ণ luxury living room দেখাও। Sofa, table এবং অন্যান্য furniture যেন স্পষ্টভাবে দেখা যায়। শেষ ফ্রেমে সুন্দরভাবে furniture collection এবং brand logo বসানোর জন্য পরিষ্কার জায়গা রাখবে।</p>
+        <p class="sty"><b>Music:</b> কোনো voice-over, dialogue, narration বা spoken words থাকবে না। শুধু premium instrumental music চলবে। Music হবে catchy, elegant, emotional এবং luxurious; শেষ দৃশ্যে একটি সুন্দর musical accent দিয়ে বিজ্ঞাপনটি শেষ হবে।</p>
+        <p class="sty"><b>Cinematic style:</b> Ultra-realistic luxury furniture commercial, attractive female model, fast yet smooth zooms, selected slow motion, detailed close-ups, elegant camera tracking, beautiful lighting, seamless continuation এবং professional color grading।</p>
+        <p>আগের ভিডিওর model, furniture, room layout ও music style পরিবর্তন করবে না। কোনো cartoon effect, distorted anatomy, sudden camera shake বা random text থাকবে না।</p>
+      </div>
+    </details>
+
+    <details class="sf">
+      <summary>
+        <span class="sf-meta"><span>Fitment Craft</span><span>Bengali</span><span>4 scenes</span></span>
+        <span class="sf-title">A Home Like Her Dream</span>
+        <span class="sf-log">An emotional family story: a wife dreams of a beautiful home, her husband finds Fitment Craft, and the old living room is transformed.</span>
+      </summary>
+      <div class="sf-body" lang="bn">
+        <h4><span class="tc">Scene 1</span> <span lang="en">The Dream</span></h4>
+        <p><b>Visual:</b> একটি সাধারণ বাংলাদেশি মধ্যবিত্ত পরিবারের ঘর। পুরোনো সোফা, বিবর্ণ কুশন আর সাদামাটা ফার্নিচার। স্ত্রী ঘরের দিকে তাকিয়ে মৃদু হাসে, চোখেমুখে নিজের স্বপ্নের ছাপ।</p>
+        <p class="line"><span class="who">স্ত্রী (মিষ্টি হাসি দিয়ে)</span>“জানো, আমার না অনেক দিনের ইচ্ছা… নিজের মনের মতো করে আমাদের ঘরটা একটু সুন্দর করে সাজাবো।”</p>
+        <p class="sty"><b>Camera:</b> স্ত্রীর মুখের ক্লোজ-আপ, তারপর পুরোনো ফার্নিচার দেখাবে।<br><b>Music:</b> নরম, আবেগপূর্ণ পিয়ানো।</p>
+
+        <h4><span class="tc">Scene 2</span> <span lang="en">The Promise</span></h4>
+        <p><b>Visual:</b> স্বামী স্ত্রীর দিকে তাকিয়ে মুচকি হাসে। তারপর মোবাইল ফোন বের করে Fitment Craft-এর ওয়েবসাইটে সুন্দর ডিজাইনের ফার্নিচার দেখায়। স্ত্রী মুগ্ধ হয়ে স্ক্রিনের দিকে তাকায়।</p>
+        <p class="line"><span class="who">স্বামী (আশ্বস্ত করে)</span>“এটা নিয়ে এত চিন্তা করছ কেন? তোমার স্বপ্ন যখন আছে, সেটা পূরণ করার দায়িত্বও তো আমার!”</p>
+        <p class="line"><span class="who">স্ত্রী (আনন্দ নিয়ে)</span>“আরে! এই ফার্নিচারগুলোর ডিজাইন তো দারুণ সুন্দর!”</p>
+        <p class="sty"><b>Camera:</b> ফোনের স্ক্রিনে Fitment Craft-এর আসল প্রোডাক্টের ছবি, তারপর স্ত্রীর আনন্দিত মুখ।<br><b>Music:</b> আবেগ থেকে ধীরে ধীরে আনন্দময় সুরে পরিবর্তন।</p>
+
+        <h4><span class="tc">Scene 3</span> <span lang="en">The Transformation</span></h4>
+        <p><b>Visual:</b> আগের সেই ঘরেই এবার নতুন Fitment Craft ফার্নিচার আসছে। পুরোনো সোফা ও ফার্নিচারের জায়গায় আধুনিক ডিজাইনের সোফা, সুন্দর সেন্টার টেবিল ও মানানসই ফার্নিচার বসানো হচ্ছে। ঘরটি ধীরে ধীরে সুন্দর হয়ে উঠছে।</p>
+        <p class="line"><span class="who">Narration (স্ত্রীর কণ্ঠ)</span>“যে ঘরটা ছিল শুধু একটা স্বপ্ন… ভালোবাসা আর সুন্দর ডিজাইনের ছোঁয়ায়, সেই ঘরটাই হয়ে উঠল মনের মতো।”</p>
+        <p class="sty"><b>Camera:</b> পুরোনো ঘর থেকে নতুন ঘরে স্মুথ ট্রানজিশন। Fitment Craft-এর আসল ফার্নিচারের ডিজাইন স্পষ্টভাবে দেখাবে।<br><b>Music:</b> আনন্দময়, হৃদয়ছোঁয়া সিনেম্যাটিক সুর।</p>
+
+        <h4><span class="tc">Scene 4</span> <span lang="en">The Dream Fulfilled</span></h4>
+        <p><b>Visual:</b> সম্পূর্ণ সাজানো সুন্দর ঘরে স্ত্রী নতুন সোফায় বসে চারদিকে তাকায়। মুখে তৃপ্তির হাসি, চোখেমুখে আনন্দ। স্বামী পাশে বসে। ক্যামেরা নতুন ফার্নিচারের ডিজাইন ও সুন্দর ঘর দেখায়।</p>
+        <p class="line"><span class="who">স্ত্রী (আবেগভরা হাসিতে)</span>“জানো, আজ সত্যিই মনে হচ্ছে… আমার স্বপ্নটা পূরণ হয়েছে!”</p>
+        <p class="line"><span class="who">Voice-over (শেষ ৩ সেকেন্ড)</span>“আপনার স্বপ্নের ঘর সাজাতে—Fitment Craft। Stylish Design, আপনার সাধ্যের মধ্যে।”</p>
+        <p><b>Ending:</b> Fitment Craft-এর আসল লোগো ও ব্র্যান্ডের নাম।</p>
+      </div>
+    </details>
+
   </div>
 </div></section>
 
