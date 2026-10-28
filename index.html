@@ -207,6 +207,18 @@ footer .wrap { padding-block: 24px; border-top: 1px solid var(--line); font-fami
 .shot figcaption { display: flex; flex-direction: column; gap: 2px; }
 .g-series { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
 .g-title { font-weight: 600; font-size: 16px; line-height: 1.35; }
+/* Achievements */
+.awards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; align-items: start; }
+.award { margin: 0; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.award img { display: block; width: 100%; max-width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 4px; background: var(--surface); }
+.award:first-child img { object-fit: contain; }
+.award figcaption { display: flex; flex-direction: column; gap: 3px; }
+.a-year { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+.a-title { font-weight: 600; font-size: 17px; }
+.a-desc { color: var(--muted); font-size: 14px; line-height: 1.5; }
+@media (max-width: 900px) { .awards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .awards { grid-template-columns: 1fr; gap: 28px; } }
+
 /* Scripts */
 .scripts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: start; }
 .script { border: 1px solid var(--line); border-radius: 4px; background: var(--surface); min-width: 0; }
@@ -272,7 +284,7 @@ footer .wrap { padding-block: 24px; border-top: 1px solid var(--line); font-fami
 
 <nav><div class="wrap">
   <span>Yasin Alam · Dhaka</span>
-  <div class="links"><a href="#work">Work</a><a href="#shorts">Shorts</a><a href="#thumbnails">Thumbnails</a><a href="#scripts">Scripts</a><a href="#about">About</a><a href="#contact">Contact</a></div>
+  <div class="links"><a href="#work">Work</a><a href="#shorts">Shorts</a><a href="#thumbnails">Thumbnails</a><a href="#scripts">Scripts</a><a href="#about">About</a><a href="#achievements">Achievements</a><a href="#contact">Contact</a></div>
 </div></nav>
 
 <header class="hero"><div class="wrap hero-grid">
@@ -445,6 +457,27 @@ footer .wrap { padding-block: 24px; border-top: 1px solid var(--line); font-fami
       <li><span class="when">2023 – 2025</span><span class="role">MBA, Organizational Strategy &amp; Leadership</span><span class="org">University of Dhaka</span></li>
       <li><span class="when">2017 – 2022</span><span class="role">BBA, Finance</span><span class="org">Ahsanullah University of Science and Technology</span></li>
     </ol>
+  </div>
+</div></section>
+
+<section class="block" id="achievements"><div class="wrap">
+  <div class="head">
+    <h2>Achievements</h2>
+    <p>Recognition from university, debating and student leadership. More achievements will be added here.</p>
+  </div>
+  <div class="awards">
+    <figure class="award">
+      <img src="img/award-ambassador.jpg" alt="Best Batch Ambassador award graphic for Yasin Alam, BBA-40, Jagoron 71" loading="lazy">
+      <figcaption><span class="a-year">2020</span><span class="a-title">Best Batch Ambassador</span><span class="a-desc">BBA-40, recognised at Jagoron 71.</span></figcaption>
+    </figure>
+    <figure class="award">
+      <img src="img/award-certificates.jpg" alt="Yasin Alam with his certificates, trophy and event badges from university" loading="lazy">
+      <figcaption><span class="a-year">2018 – 2021</span><span class="a-title">Debating and volunteering</span><span class="a-desc">AUST Debating Club, the 2nd AUSTDC National Debate Festival, Hult Prize volunteering, and a class representative award.</span></figcaption>
+    </figure>
+    <figure class="award">
+      <img src="img/award-ceremony.jpg" alt="Yasin Alam receiving a plaque from a professor at Ahsanullah University of Science and Technology" loading="lazy">
+      <figcaption><span class="a-year">AUST</span><span class="a-title">Award ceremony</span><span class="a-desc">Receiving a plaque at Ahsanullah University of Science and Technology.</span></figcaption>
+    </figure>
   </div>
 </div></section>
 
